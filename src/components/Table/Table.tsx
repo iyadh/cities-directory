@@ -12,7 +12,7 @@ export const Table = () => {
   const [cities, setCities] = useState<City[] | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/cities")
+    fetch(import.meta.env.VITE_CITIES_URL)
       .then((response) => response.json())
       .then(setCities);
   }, []);
