@@ -10,7 +10,7 @@ export const Sidebar = () => {
   const [countries, setCountries] = useState<Country[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/countries")
+    fetch(import.meta.env.VITE_COUNTRIES_URL)
       .then((response) => response.json())
       .then(setCountries);
   }, []);
