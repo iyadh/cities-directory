@@ -1,6 +1,5 @@
 #cities-table-wrapper {
-    height: 100%;
-    flex-grow: 1;
+    @apply flex-1 h-screen overflow-y-auto p-4;
 }
 
 table {
