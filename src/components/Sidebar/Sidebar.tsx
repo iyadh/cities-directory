@@ -1,6 +1,6 @@
 import "./Sidebar.css";
-import {useContext, useEffect} from 'react';
-import {ActionType, Context} from '../../store';
+import React, {useContext, useEffect} from 'react';
+import {ActionType, StoreContext, Context} from '../../store';
 
 type Country = {
   name: string;
@@ -8,7 +8,8 @@ type Country = {
 }
 
 export const Sidebar = () => {
-  const { store, dispatch } = useContext(Context);
+  // @ts-ignore
+  const { store, dispatch }: StoreContext = useContext(Context);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_COUNTRIES_URL)

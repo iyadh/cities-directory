@@ -1,11 +1,12 @@
 import "./Table.css";
-import {useContext, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { CityRow } from "../City/CityRow";
-import {ActionType, Context} from '../../store';
+import {ActionType, Context, StoreContext} from '../../store';
 import {City} from '../../types/city.def';
 
 export const Table = () => {
-  const { store, dispatch } = useContext(Context);
+  // @ts-ignore
+  const { store, dispatch }: StoreContext = useContext(Context);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_CITIES_URL)

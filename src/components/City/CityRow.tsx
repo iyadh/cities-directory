@@ -1,10 +1,19 @@
 import React from 'react';
+import {City} from '../../types/city.def';
 
-export class CityRow extends React.Component {
-  constructor(props) {
+interface Props {
+  city: City;
+}
+
+interface State {
+  city: City;
+}
+
+export class CityRow extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      city: {}
+      city: props.city,
     };
   }
 
