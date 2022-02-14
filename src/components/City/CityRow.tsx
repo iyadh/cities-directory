@@ -25,14 +25,19 @@ export class CityRow extends React.Component<Props, State> {
 
   render() {
     return (
-      <td className="flex justify-between items-center p-2 border-none">
-        <span className="flex flex-col text-left">
-          <span className="font-bold text-lg">{this.state.city.name}</span>
-          <span className="text-sm text-gray-400">{`${this.state.city.country}${'subcountry' in this.state.city ? ' -' +
-            ' ' + this.state.city.subcountry: ''}`}</span>
-        </span>
-        <a href={`https://www.geonames.org/${this.state.city.geonameid}`} target="_blank">View in Geonames 	&#8594;</a>
-      </td>
+      <tr>
+        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+          {this.state.city.name}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          {`${this.state.city.country}${'subcountry' in this.state.city ? ' -' +
+            ' ' + this.state.city.subcountry: ''}`}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+          <a className="text-indigo-600 hover:text-indigo-900" href={`https://www.geonames.org/${this.state.city.geonameid}`} target="_blank">View in Geonames 	&#8594;</a>
+        </td>
+      </tr>
+
     )
   }
 }

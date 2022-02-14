@@ -29,20 +29,34 @@ export const Table = () => {
 
   return (
     <div id="cities-table-wrapper">
-      <table>
-        <thead>
-        <tr>
-          <th>City</th>
-        </tr>
-        </thead>
-        <tbody>
-        { store.cities?.map((city: City, index: number) => (
-          <tr key={index}>
-            <CityRow city={city} />
+      <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              City
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Country
+            </th>
+            <th scope="col" className="relative px-6 py-3">
+              <span className="sr-only">Edit</span>
+            </th>
           </tr>
-        ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+          { store.cities?.map((city: City, index: number) => (
+            <CityRow key={index} city={city} />
+          ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

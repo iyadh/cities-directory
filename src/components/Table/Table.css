@@ -1,9 +1,8 @@
 #cities-table-wrapper {
-    height: 100%;
-    flex-grow: 1;
+    @apply flex-1 h-screen overflow-y-auto p-4;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0px;
@@ -17,4 +16,4 @@ td {
 th {
     height: 40px;
     font-size: 18px;
-}
+} */
