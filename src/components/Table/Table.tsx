@@ -1,15 +1,10 @@
 import "./Table.css";
 import { useEffect, useState } from "react";
-
-type City = {
-  name: string;
-  country?: string;
-  subcountry?: string;
-  geonameid?: number;
-};
+import {CityProps} from '../../types/city.def';
+import { City } from "../City/City";
 
 export const Table = () => {
-  const [cities, setCities] = useState<City[] | null>(null);
+  const [cities, setCities] = useState<CityProps[] | null>(null);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_CITIES_URL)
@@ -28,7 +23,7 @@ export const Table = () => {
         <tbody>
         {cities?.map((city, index) => (
           <tr key={index}>
-            <td>{city.name}</td>
+            <City city={city} />
           </tr>
         ))}
         </tbody>
