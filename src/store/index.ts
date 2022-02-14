@@ -15,13 +15,24 @@ export interface Action {
   payload?: any;
 }
 
-export const state = {
+export interface State {
+  country: Country | null;
+  countries: Country[];
+  cities: City[];
+}
+
+export const state: State = {
   country: null as Country | null,
   countries: new Array<Country>(),
   cities: new Array<City>()
 }
 
-export const reducer = (state, action: Action) => {
+export interface StoreContext {
+  store: State;
+  dispatch: React.Dispatch<Action>;
+}
+
+export const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case ActionType.SetCountry:
       return {
@@ -53,4 +64,4 @@ export const reducer = (state, action: Action) => {
   }
 }
 
-export const Context = createContext();
+export const Context = createContext<StoreContext | null>(null);
