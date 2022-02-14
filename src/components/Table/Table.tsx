@@ -1,16 +1,30 @@
 import "./Table.css";
-import { useEffect, useState } from "react";
-import {CityProps} from '../../types/city.def';
-import { City } from "../City/City";
+import {useContext, useEffect} from 'react';
+import { CityRow } from "../City/CityRow";
+import {ActionType, Context} from '../../store';
+import {City} from '../../types/city.def';
 
 export const Table = () => {
-  const [cities, setCities] = useState<CityProps[] | null>(null);
+  const { store, dispatch } = useContext(Context);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_CITIES_URL)
       .then((response) => response.json())
-      .then(setCities);
+      .then((response) => dispatch({ type: ActionType.SetCities, payload: response }));
   }, []);
+
+  useEffect(() => {
+    let url = import.meta.env.VITE_CITIES_URL;
+
+    if (!!store.country) {
+      url = `${url}?country=${encodeURIComponent(store.country.name)}`;
+    }
+
+    dispatch({ type: ActionType.ResetCities }); // Reset cities to avoid strange behavior when changing country
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => dispatch({ type: ActionType.SetCities, payload: response }))
+  }, [store.country]);
 
   return (
     <div id="cities-table-wrapper">
@@ -21,9 +35,9 @@ export const Table = () => {
         </tr>
         </thead>
         <tbody>
-        {cities?.map((city, index) => (
+        { store.cities?.map((city: City, index: number) => (
           <tr key={index}>
-            <City city={city} />
+            <CityRow city={city} />
           </tr>
         ))}
         </tbody>
