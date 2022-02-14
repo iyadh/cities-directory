@@ -1,5 +1,5 @@
 # cities-directories
-Demo on [Vercel](https://rick-and-morty-demo.vercel.app/)
+Demo on [Vercel](https://cities-directory.vercel.app)
 
 ## Technical Stack
 
